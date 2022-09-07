@@ -11,16 +11,20 @@ void BTN_Short_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 	if(p_ButtonX == &h_encoder_button){
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
-
+				TL_MENU_Set_State();
 				break;
 			case SETTING_REALTIME_MENU:
 				SR_MENU_Change_Setting_State(INCREASE);
 				break;
 			case TIMELINE_LIST_MENU:
-
+				if(TL_MENU_Data.current_pointer == 0){
+					ST_MENU_Set_State();
+				} else{
+					TL_MENU_Change_Timeline_State();
+				}
 				break;
 			case SETTING_TIMELINE_MENU:
-
+				ST_MENU_Change_Setting_State(INCREASE);
 				break;
 			default:
 				break;
@@ -38,10 +42,10 @@ void BTN_Long_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 				SR_MENU_Change_Setting_State(DECREASE);
 				break;
 			case TIMELINE_LIST_MENU:
-
+				MAIN_MENU_Display();
 				break;
 			case SETTING_TIMELINE_MENU:
-
+				ST_MENU_Change_Setting_State(DECREASE);
 				break;
 			default:
 				break;
@@ -59,10 +63,10 @@ void ENCODER_Forward_Callback(ENCODER_HandleTypeDef *p_encoder){
 				SR_MENU_Set_Value(INCREASE);
 				break;
 			case TIMELINE_LIST_MENU:
-
+				TL_MENU_Change_Pointer(INCREASE);
 				break;
 			case SETTING_TIMELINE_MENU:
-
+				ST_MENU_Set_Value(INCREASE);
 				break;
 			default:
 				break;
@@ -80,10 +84,10 @@ void ENCODER_Backward_Callback(ENCODER_HandleTypeDef *p_encoder){
 				SR_MENU_Set_Value(DECREASE);
 				break;
 			case TIMELINE_LIST_MENU:
-
+				TL_MENU_Change_Pointer(DECREASE);
 				break;
 			case SETTING_TIMELINE_MENU:
-
+				ST_MENU_Set_Value(DECREASE);
 				break;
 			default:
 				break;

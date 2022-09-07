@@ -1,12 +1,7 @@
-#include "timeline_manage.h"
+#include "Timeline_Manage.h"
 
-//#define DATA_FRAME_SIZE 4 // in byte
-#define DATA_FRAME_SIZE_BYTE 	(sizeof(FLASH_DATA_HandleTypeDef))	// in byte
+#define DATA_FRAME_SIZE_BYTE 	(sizeof(FLASH_DATA_t))				// in byte
 #define DATA_FRAME_SIZE_BIT		(DATA_FRAME_SIZE_BYTE * 8)			// in bit
-//#define DAY_DATA_MASK			0x0000007F
-//#define HOUR_DATA_MASK			0x00000F80
-//#define MINUTE_DATA_MASK		0x0003F000
-//#define MASS_DATA_MASK			0xFFFC0000
 
 TIMELINE_DATA_HandleTypdeDef TIMELINE_Data;
 
@@ -41,29 +36,23 @@ void TIMELINE_Init(){
 		if(((uint24_t *)t_data)->value == 0xFFFFFF){
 			((uint24_t *)(TIMELINE_Data.flash_data + i))->value = 0xFFFFFF;
 		} else{
-			TIMELINE_Data.flash_data[i] = *((FLASH_DATA_HandleTypeDef *)t_data);
+			TIMELINE_Data.flash_data[i] = *((FLASH_DATA_t *)t_data);
 			TIMELINE_Data.len++;
 		}
 	}
 }
 
-void TIMELINE_Add(uint8_t p_day, uint8_t p_hour, uint8_t p_minute, uint16_t p_timeline_state){
+void TIMELINE_Add(FLASH_DATA_t *p_new_timeline){
 	if(TIMELINE_Data.len < MAX_OPTIONS){
-		TIMELINE_Data.flash_data[TIMELINE_Data.len].day = p_day;
-		TIMELINE_Data.flash_data[TIMELINE_Data.len].hour = p_hour;
-		TIMELINE_Data.flash_data[TIMELINE_Data.len].minute = p_minute;
-		TIMELINE_Data.flash_data[TIMELINE_Data.len].timeline_state = p_timeline_state;
+		TIMELINE_Data.flash_data[TIMELINE_Data.len] = *p_new_timeline;
 		TIMELINE_Data.len++;
 		TIMELINE_Sort();
 		TIMELINE_Store_To_Flash();
 	}
 }
 
-void TIMELINE_Change(uint8_t p_index, uint8_t p_day, uint8_t p_hour, uint8_t p_minute, uint16_t p_timeline_state){
-	TIMELINE_Data.flash_data[p_index].day = p_day;
-	TIMELINE_Data.flash_data[p_index].hour = p_hour;
-	TIMELINE_Data.flash_data[p_index].minute = p_minute;
-	TIMELINE_Data.flash_data[p_index].timeline_state = p_timeline_state;
+void TIMELINE_Change(FLASH_DATA_t *p_des_timeline, FLASH_DATA_t *p_new_timeline){
+	*p_des_timeline = *p_new_timeline;
 	TIMELINE_Sort();
 	TIMELINE_Store_To_Flash();
 }
@@ -71,14 +60,13 @@ void TIMELINE_Change(uint8_t p_index, uint8_t p_day, uint8_t p_hour, uint8_t p_m
 void TIMELINE_Delete(uint8_t p_index){
 	if(TIMELINE_Data.len >= 0){
 		for(int i = p_index; i < TIMELINE_Data.len - 1; i++){
-			FLASH_DATA_HandleTypeDef t_temp = TIMELINE_Data.flash_data[i];
+			FLASH_DATA_t t_temp = TIMELINE_Data.flash_data[i];
 			TIMELINE_Data.flash_data[i] = TIMELINE_Data.flash_data[i+1];
 			TIMELINE_Data.flash_data[i+1] = t_temp;
 		}
 		*(uint32_t *)(TIMELINE_Data.flash_data + TIMELINE_Data.len - 1) = 0xFFFFFFFF;
 		TIMELINE_Data.len--;
 		TIMELINE_Store_To_Flash();
-//		CONTROL_Recheck_Time();
 	}
 }
 
@@ -88,7 +76,7 @@ void TIMELINE_Sort(){
 			uint16_t t_data_i = TIMELINE_Data.flash_data[i].hour * 60 + TIMELINE_Data.flash_data[i].minute;
 			uint16_t t_data_j = TIMELINE_Data.flash_data[j].hour * 60 + TIMELINE_Data.flash_data[j].minute;
 			if(t_data_i > t_data_j){
-				FLASH_DATA_HandleTypeDef t_temp;
+				FLASH_DATA_t t_temp;
 				t_temp = TIMELINE_Data.flash_data[i];
 				TIMELINE_Data.flash_data[i] = TIMELINE_Data.flash_data[j];
 				TIMELINE_Data.flash_data[j] = t_temp;
@@ -98,8 +86,8 @@ void TIMELINE_Sort(){
 }
 
 void TIMELINE_Store_To_Flash(){
-	FLASH_DATA_HandleTypeDef *t_flash_data;
-	t_flash_data = (FLASH_DATA_HandleTypeDef *)malloc(TIMELINE_Data.len * DATA_FRAME_SIZE_BIT);
+	FLASH_DATA_t *t_flash_data;
+	t_flash_data = (FLASH_DATA_t *)malloc(TIMELINE_Data.len * DATA_FRAME_SIZE_BIT);
 	for(int i = 0; i < TIMELINE_Data.len; i++){
 		*(t_flash_data + i) = *(TIMELINE_Data.flash_data + i);
 	}

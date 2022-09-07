@@ -6,18 +6,18 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../App/Rotary_Encoder.c \
-../App/real_time.c \
-../App/timeline_manage.c 
+../App/Timeline_Manage.c \
+../App/real_time.c 
 
 OBJS += \
 ./App/Rotary_Encoder.o \
-./App/real_time.o \
-./App/timeline_manage.o 
+./App/Timeline_Manage.o \
+./App/real_time.o 
 
 C_DEPS += \
 ./App/Rotary_Encoder.d \
-./App/real_time.d \
-./App/timeline_manage.d 
+./App/Timeline_Manage.d \
+./App/real_time.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -27,7 +27,7 @@ App/%.o App/%.su: ../App/%.c App/subdir.mk
 clean: clean-App
 
 clean-App:
-	-$(RM) ./App/Rotary_Encoder.d ./App/Rotary_Encoder.o ./App/Rotary_Encoder.su ./App/real_time.d ./App/real_time.o ./App/real_time.su ./App/timeline_manage.d ./App/timeline_manage.o ./App/timeline_manage.su
+	-$(RM) ./App/Rotary_Encoder.d ./App/Rotary_Encoder.o ./App/Rotary_Encoder.su ./App/Timeline_Manage.d ./App/Timeline_Manage.o ./App/Timeline_Manage.su ./App/real_time.d ./App/real_time.o ./App/real_time.su
 
 .PHONY: clean-App
 

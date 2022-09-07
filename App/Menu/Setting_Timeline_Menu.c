@@ -1,152 +1,90 @@
 #include "Setting_Timeline_Menu.h"
+#include "Timeline_Manage.h"
+#include "Menu.h"
 
-//extern UART_HandleTypeDef huart2;
 ST_MENU_Data_HandleTypeDef ST_MENU_Data;
 
-static FRAME_HandleTypeDef set_time_menu_frame_const[5] = {
-		{0, 0, "Time: "},
-		{8, 0, ":"},
-		{0, 1, "Day: "},
-		{0, 2, "Mass: "},
-		{0, 3, "<[*]  [D]Cancel [#]>"},
-};
-
-static dictionary DAY_Str[7] = {
-		{0x01, "C"},
-		{0x02, "2"},
-		{0x04, "3"},
-		{0x08, "4"},
-		{0x10, "5"},
-		{0x20, "6"},
-		{0x40, "7"},
-};
-
-static FRAME_HandleTypeDef set_time_menu_frame_var[4] = {
-		{6, 0, ""},
-		{9, 0, ""},
-		{5, 1, ""},
-		{6, 2, ""},
-};
-
-static uint8_t number_of_digit[4] = {2, 2, 7, 5};
-static uint16_t data_max[4] = {23, 59, 0b01111111, 1000};
-
-static void create_day_string(char p_str[], uint8_t p_day){
-	for(int i = 0; i < 7; i++){
-		if(p_day & (1 << i)){
-			for(int j = 0; j < 7; j++){
-				if(DAY_Str[j].index == (1 << i)){
-					strcat(p_str, DAY_Str[j].value);
-					break;
-				}
-			}
-		}
-	}
-}
+static uint8_t __max_value[] = {23, 59, 1, 1, 1, 1, 1, 1, 1};
+extern char *__setting_type_str[6];
 
 void ST_MENU_Init(){
 
 }
 
 void ST_MENU_Set_State(){
-//	MENU_Data.state = SET_TIME_MENU;
-//	MENU_Data.changed = 0;
-//	ST_MENU_Data.digit = 0;
-//	for(int i = 0; i < 4; i++) ST_MENU_Data.time_data[i] = 0;
-//	for(int i = 0; i < 4; i++){
-//		for(int j = 0; j < 21; j++){
-//			set_time_menu_frame_var[i].str[j] = 0;
-//		}
-//	}
-//	ST_MENU_Data.setting_type = HOUR_TYPE;
+	MENU_Data.menu_type = SETTING_TIMELINE_MENU;
+	MENU_Data.changed = 0;
+	MENU_Data.is_changing_menu = 1;
+	ST_MENU_Data.state = SETTING_ALARM_HOUR;
+	FLASH_DATA_t t_timeline = {0, 0, 0, 1};
+	ST_MENU_Data.timeline_data = t_timeline;
+	ST_MENU_Data.current_day_state = 0;
 }
 
-void ST_MENU_Set_State_NumKey(uint8_t p_key){
-//	MENU_Data.state = SET_TIME_MENU;
-//	MENU_Data.changed = 0;
-//	if(ST_MENU_Data.setting_type == DAY_TYPE){
-//		if(p_key == 'C'){
-//			uint8_t t_data = 1;
-//			if(ST_MENU_Data.time_data[DAY_TYPE] & t_data){
-//				ST_MENU_Data.time_data[DAY_TYPE] &= ~t_data;
-//			} else{
-//				ST_MENU_Data.time_data[DAY_TYPE] |= t_data;
-//			}
-//		} else if(p_key >= '1' && p_key <= '7'){
-//			uint8_t t_data = 1 << (p_key - '1');
-//			if(ST_MENU_Data.time_data[DAY_TYPE] & t_data){
-//				ST_MENU_Data.time_data[DAY_TYPE] &= ~t_data;
-//			} else{
-//				ST_MENU_Data.time_data[DAY_TYPE] |= t_data;
-//			}
-//		}
-//		char t_str[8] = {};
-//		create_day_string(t_str, ST_MENU_Data.time_data[DAY_TYPE]);
-//		ST_MENU_Data.digit = (!strlen(t_str)) ? strlen(t_str) : (strlen(t_str) - 1);
-//		strcpy(set_time_menu_frame_var[DAY_TYPE].str, t_str);
-//	} else{
-//		if(ST_MENU_Data.digit < number_of_digit[ST_MENU_Data.setting_type]){
-//			set_time_menu_frame_var[ST_MENU_Data.setting_type].str[ST_MENU_Data.digit] = (char)p_key;
-//			if(ST_MENU_Data.digit + 1 < number_of_digit[ST_MENU_Data.setting_type]){
-//				ST_MENU_Data.digit++;
-//			}
-//		}
-//		if(ST_MENU_Data.digit + 1 == number_of_digit[ST_MENU_Data.setting_type]){
-//			if(atoi(set_time_menu_frame_var[ST_MENU_Data.setting_type].str) > data_max[ST_MENU_Data.setting_type]){
-//				char t_str[10] = {};
-//				sprintf(t_str, "%d", data_max[ST_MENU_Data.setting_type]);
-//				strcpy(set_time_menu_frame_var[ST_MENU_Data.setting_type].str, t_str);
-//			}
-//		}
-//	}
+void ST_MENU_Change_Setting_State(uint8_t p_is_increase){
+	if(ST_MENU_Data.state == CHECKING_ALARM_AGAIN){
+		TIMELINE_Add(&ST_MENU_Data.timeline_data);
+	} else{
+		int8_t *t_value = (int8_t *)(&ST_MENU_Data.state);
+		*t_value += ((p_is_increase == INCREASE) ? 1 : -1);
+		if(*t_value < 0){
+			*t_value = 0;
+			TL_MENU_Set_State();
+		}
+		MENU_Data.menu_type = SETTING_TIMELINE_MENU;
+		MENU_Data.changed = 0;
+	}
 }
 
-void ST_MENU_Set_State_SigKey(uint8_t p_key){
-//	MENU_Data.state = SET_TIME_MENU;
-//	MENU_Data.changed = 0;
-//	if(p_key == '#'){
-//		if(ST_MENU_Data.setting_type != CHECK_AGAIN){
-//			if(ST_MENU_Data.digit == 0 && ST_MENU_Data.setting_type != DAY_TYPE){
-//				set_time_menu_frame_var[ST_MENU_Data.setting_type].str[0] = '0';
-//			}
-//			ST_MENU_Data.setting_type++;
-//			ST_MENU_Data.digit = 0;
-//		} else if(ST_MENU_Data.setting_type == CHECK_AGAIN){
-//			ST_MENU_Data.time_data[0] = atoi(set_time_menu_frame_var[0].str);
-//			ST_MENU_Data.time_data[1] = atoi(set_time_menu_frame_var[1].str);
-//			ST_MENU_Data.time_data[3] = atoi(set_time_menu_frame_var[3].str);
-//			TIME_Add(ST_MENU_Data.time_data[2], ST_MENU_Data.time_data[0], ST_MENU_Data.time_data[1], ST_MENU_Data.time_data[3]);
-//			TL_MENU_Set_State(0);
-//		}
-//	} else if(p_key == '*'){
-//		if(ST_MENU_Data.digit > 0){
-//			set_time_menu_frame_var[ST_MENU_Data.setting_type].str[ST_MENU_Data.digit] = 0;
-//			ST_MENU_Data.digit--;
-//		} else{
-//			if(ST_MENU_Data.setting_type > 0){
-//				ST_MENU_Data.setting_type--;
-//				uint8_t t_previous_data_string_length = strlen(set_time_menu_frame_var[ST_MENU_Data.setting_type].str);
-//				ST_MENU_Data.digit = (t_previous_data_string_length == 0) ? 0 : t_previous_data_string_length - 1;
-//			}
-//		}
-//
-//	}
+void ST_MENU_Set_Value(uint8_t p_is_increase){
+	if(ST_MENU_Data.state < CHECKING_ALARM_AGAIN){
+		int8_t *t_data_ptr;
+		if(ST_MENU_Data.state >= SETTING_ALARM_SUNDAY){
+			t_data_ptr = (int8_t *)(&ST_MENU_Data.current_day_state);
+		} else{
+			t_data_ptr = (int8_t *)(&ST_MENU_Data.timeline_data) + ST_MENU_Data.state;
+		}
+		*t_data_ptr += ((p_is_increase == INCREASE) ? 1 : -1);
+		if(*t_data_ptr > __max_value[ST_MENU_Data.state]){
+			*t_data_ptr = 0;
+		} else if(*t_data_ptr < 0){
+			*t_data_ptr = __max_value[ST_MENU_Data.state];
+		}
+		if(ST_MENU_Data.state >= SETTING_ALARM_SUNDAY){
+			if(*t_data_ptr){
+				ST_MENU_Data.timeline_data.day |= (0x01 << (ST_MENU_Data.state - SETTING_ALARM_SUNDAY));
+			} else{
+				ST_MENU_Data.timeline_data.day &= ~(0x01 << (ST_MENU_Data.state - SETTING_ALARM_SUNDAY));
+			}
+		}
+	}
+	MENU_Data.menu_type = SETTING_REALTIME_MENU;
+	MENU_Data.changed = 0;
 }
 
 void ST_MENU_Display(){
-	LCD_Clear(MENU_Data.hlcd);
-	LCD_Cursor_Blink(MENU_Data.hlcd);
-	for(int i = 0; i < 5; i++){
-		LCD_Set_Cursor(MENU_Data.hlcd, set_time_menu_frame_const[i].col, set_time_menu_frame_const[i].row);
-		LCD_Write(MENU_Data.hlcd, set_time_menu_frame_const[i].str);
+	if(MENU_Data.is_changing_menu){
+		LCD_Clear(MENU_Data.hlcd);
+		MENU_Data.is_changing_menu = 0;
 	}
-	for(int i = 0; i < 4; i++){
-		LCD_Set_Cursor(MENU_Data.hlcd, set_time_menu_frame_var[i].col, set_time_menu_frame_var[i].row);
-		LCD_Write(MENU_Data.hlcd, set_time_menu_frame_var[i].str);
-	}
-	if(ST_MENU_Data.setting_type == CHECK_AGAIN){
-		LCD_Cursor_No_Blink(MENU_Data.hlcd);
+	LCD_Set_Cursor(MENU_Data.hlcd, 0, 0);
+	if(SR_MENU_Data.state < CHECKING_AGAIN){
+		LCD_Write(MENU_Data.hlcd, "  Setting : %s   ", __setting_type_str[SR_MENU_Data.state]);
 	} else{
-		LCD_Set_Cursor(MENU_Data.hlcd, set_time_menu_frame_var[ST_MENU_Data.setting_type].col + ST_MENU_Data.digit, set_time_menu_frame_var[ST_MENU_Data.setting_type].row);
+		LCD_Write(MENU_Data.hlcd, "   Checking again   ");
+	}
+
+	LCD_Write(MENU_Data.hlcd, "Time: %02d:%02d", ST_MENU_Data.timeline_data.hour, ST_MENU_Data.timeline_data.minute);
+
+	LCD_Set_Cursor(MENU_Data.hlcd, 0, 1);
+	LCD_Write(MENU_Data.hlcd, "Day: C234567");
+	LCD_Set_Cursor(MENU_Data.hlcd, 5, 2);
+	for(int i = 0; i < 7; i++){
+		uint8_t t_day_value = ST_MENU_Data.timeline_data.day & (1 << i);
+		if(t_day_value){
+			LCD_Send_Data(MENU_Data.hlcd, 0x00);
+		} else{
+			LCD_Send_Data(MENU_Data.hlcd, 0xFE);
+		}
 	}
 }

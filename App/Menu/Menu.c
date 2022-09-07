@@ -10,6 +10,9 @@ void MENU_Init(LCD_I2C_HandleTypeDef *p_hlcd){
 	MENU_Data.is_changing_menu = 1;
 	MENU_Data.menu_type = MAIN_MENU;
 	MAIN_MENU_Init();
+	SR_MENU_Init();
+	TL_MENU_Init();
+	ST_MENU_Init();
 }
 
 //void test_big_number(){
@@ -30,20 +33,19 @@ void MENU_Handle(){
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
 				MAIN_MENU_Display();
-				MENU_Data.changed = 1;
 				break;
 			case SETTING_REALTIME_MENU:
 				SR_MENU_Display();
-				MENU_Data.changed = 1;
 				break;
 			case TIMELINE_LIST_MENU:
-
+				TL_MENU_Display();
 				break;
 			case SETTING_TIMELINE_MENU:
-
+				ST_MENU_Display();
 				break;
 			default:
 				break;
 		}
+		MENU_Data.changed = 1;
 	}
 }

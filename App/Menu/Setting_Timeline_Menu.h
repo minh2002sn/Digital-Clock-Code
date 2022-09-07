@@ -1,31 +1,40 @@
-#ifndef SET_TIME_MENU_H
-#define SET_TIME_MENU_H
+#ifndef SETTING_TIMELINE_MENU_H
+#define SETTING_TIMELINE_MENU_H
 
-#include <Timeline_List_Menu.h>
-#include "dictionary.h"
-#include "frame.h"
-#include "menu.h"
-#include "timeline_manage.h"
-#include "LCD_I2C.h"
+#include "stdint.h"
+#include "Timeline_Manage.h"
+
+enum{
+	IS_CHANGING_EXIT_TIMELINE,
+	IS_ADDING_NEW_TIMELINE,
+};
 
 typedef enum{
-	HOUR_TYPE,
-	MINUTE_TYPE,
-	DAY_TYPE,
-	MASS_TYPE,
-	CHECK_AGAIN,
-}SETTING_TYPE_HandleTypeDef;
+	SETTING_ALARM_HOUR,
+	SETTING_ALARM_MINUTE,
+	SETTING_ALARM_SUNDAY,
+	SETTING_ALARM_MONDAY,
+	SETTING_ALARM_TUESDAY,
+	SETTING_ALARM_WEDNESDAY,
+	SETTING_ALARM_THUESDAY,
+	SETTING_ALARM_FRIDAY,
+	SETTING_ALARM_SATURDAY,
+	CHECKING_ALARM_AGAIN,
+}SETTING_ALARM_STATE_t;
 
 typedef struct{
-	uint8_t digit;
-	uint16_t time_data[4];
-	SETTING_TYPE_HandleTypeDef setting_type;
+	SETTING_ALARM_STATE_t state;
+	FLASH_DATA_t timeline_data;
+
+	// use for setting day
+	uint8_t current_day_state;
 }ST_MENU_Data_HandleTypeDef;
 
 void ST_MENU_Init();
 void ST_MENU_Set_State();
-void ST_MENU_Set_State_NumKey(uint8_t p_key);
-void ST_MENU_Set_State_SigKey(uint8_t p_key);
+void ST_MENU_Change_Setting_State(uint8_t p_is_increase);
+void ST_MENU_Set_Value(uint8_t p_is_increase);
+void ST_MENU_Set_Day();
 void ST_MENU_Display();
 
 extern ST_MENU_Data_HandleTypeDef ST_MENU_Data;

@@ -6,6 +6,8 @@
 #include "stdint.h"
 #include "Main_Menu.h"
 #include "Setting_Realtime_Menu.h"
+#include "Timeline_List_Menu.h"
+#include "Setting_Timeline_Menu.h"
 
 typedef enum{
 	MAIN_MENU,

@@ -1,5 +1,5 @@
-#ifndef TIME_MANAGE_H
-#define TIME_MANAGE_H
+#ifndef TIMELINE_MANAGE_H
+#define TIMELINE_MANAGE_H
 
 #define MAX_OPTIONS 14
 
@@ -19,21 +19,21 @@ enum{
 };
 
 typedef struct{
-	uint8_t day				:7;
-	uint8_t hour			:5;
-	uint8_t minute			:6;
-	uint8_t timeline_state	:6;
-} __attribute__((packed)) FLASH_DATA_HandleTypeDef;
+	uint8_t hour;
+	uint8_t minute;
+	uint8_t day;
+	uint8_t timeline_state;
+} __attribute__((packed)) FLASH_DATA_t;
 
 typedef struct{
 	uint32_t add;
-	FLASH_DATA_HandleTypeDef flash_data[MAX_OPTIONS];
+	FLASH_DATA_t flash_data[MAX_OPTIONS];
 	uint8_t len;
 }TIMELINE_DATA_HandleTypdeDef;
 
 void TIMELINE_Init();
-void TIMELINE_Add(uint8_t p_day, uint8_t p_hour, uint8_t p_minute, uint16_t p_timeline_state);
-void TIMELINE_Change(uint8_t p_index, uint8_t p_day, uint8_t p_hour, uint8_t p_minute, uint16_t p_timeline_state);
+void TIMELINE_Add(FLASH_DATA_t *p_new_timeline);
+void TIMELINE_Change(FLASH_DATA_t *p_des_timeline, FLASH_DATA_t *p_new_timeline);
 void TIMELINE_Delete(uint8_t p_index);
 void TIMELINE_Sort();
 void TIMELINE_Store_To_Flash();

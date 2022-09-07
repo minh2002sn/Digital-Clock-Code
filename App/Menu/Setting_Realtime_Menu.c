@@ -5,7 +5,7 @@
 SR_MENU_DATA_t SR_MENU_Data;
 
 static uint8_t __max_value[6] = {23, 59, 7, 31, 12, 99};
-static char *__setting_type_str[6] = {
+char *__setting_type_str[6] = {
 		"Hour",
 		"Minute",
 		"Day",

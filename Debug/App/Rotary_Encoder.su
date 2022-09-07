@@ -1,6 +1,6 @@
 ../App/Rotary_Encoder.c:10:6:BTN_Short_Pressing_Callback	16	static
-../App/Rotary_Encoder.c:31:6:BTN_Long_Pressing_Callback	16	static
-../App/Rotary_Encoder.c:52:6:ENCODER_Forward_Callback	16	static
-../App/Rotary_Encoder.c:73:6:ENCODER_Backward_Callback	16	static
-../App/Rotary_Encoder.c:94:6:ROTARY_ENCODER_Init	8	static
-../App/Rotary_Encoder.c:101:6:ROTARY_ENCODER_Handle	8	static
+../App/Rotary_Encoder.c:35:6:BTN_Long_Pressing_Callback	16	static
+../App/Rotary_Encoder.c:56:6:ENCODER_Forward_Callback	16	static
+../App/Rotary_Encoder.c:77:6:ENCODER_Backward_Callback	16	static
+../App/Rotary_Encoder.c:98:6:ROTARY_ENCODER_Init	8	static
+../App/Rotary_Encoder.c:105:6:ROTARY_ENCODER_Handle	8	static

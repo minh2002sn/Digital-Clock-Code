@@ -1,6 +1,5 @@
-../App/Menu/Setting_Timeline_Menu.c:34:13:create_day_string	24	static
-../App/Menu/Setting_Timeline_Menu.c:47:6:ST_MENU_Init	4	static
-../App/Menu/Setting_Timeline_Menu.c:51:6:ST_MENU_Set_State	4	static
-../App/Menu/Setting_Timeline_Menu.c:64:6:ST_MENU_Set_State_NumKey	16	static
-../App/Menu/Setting_Timeline_Menu.c:104:6:ST_MENU_Set_State_SigKey	16	static
-../App/Menu/Setting_Timeline_Menu.c:136:6:ST_MENU_Display	24	static
+../App/Menu/Setting_Timeline_Menu.c:10:6:ST_MENU_Init	4	static
+../App/Menu/Setting_Timeline_Menu.c:14:6:ST_MENU_Set_State	16	static
+../App/Menu/Setting_Timeline_Menu.c:24:6:ST_MENU_Change_Setting_State	24	static
+../App/Menu/Setting_Timeline_Menu.c:39:6:ST_MENU_Set_Value	24	static
+../App/Menu/Setting_Timeline_Menu.c:65:6:ST_MENU_Display	16	static

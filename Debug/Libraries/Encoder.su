@@ -1,0 +1,5 @@
+../Libraries/Encoder.c:8:6:HAL_TIM_IC_CaptureCallback	16	static
+../Libraries/Encoder.c:15:6:ENCODER_Init	16	static
+../Libraries/Encoder.c:21:6:ENCODER_Set_Callback_Function	16	static
+../Libraries/Encoder.c:26:6:ENCODER_IT_Handle	24	static
+../Libraries/Encoder.c:31:6:ENCODER_Handle	16	static

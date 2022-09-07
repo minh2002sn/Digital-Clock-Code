@@ -1,0 +1,3 @@
+../Libraries/flash.c:3:6:FLASH_Erase	40	static
+../Libraries/flash.c:46:6:FLASH_Write	40	static
+../Libraries/flash.c:73:6:FLASH_Read	32	static

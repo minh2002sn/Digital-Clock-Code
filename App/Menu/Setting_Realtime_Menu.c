@@ -40,6 +40,7 @@ void SR_MENU_Change_Setting_State(uint8_t p_is_increase){
 		if((int8_t)SR_MENU_Data.state < 0){
 			SR_MENU_Data.state = 0;
 			MAIN_MENU_Set_State();
+			return;
 		}
 		MENU_Data.menu_type = SETTING_REALTIME_MENU;
 		MENU_Data.changed = 0;

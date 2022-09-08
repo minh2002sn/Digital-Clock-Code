@@ -22,21 +22,27 @@ void ST_MENU_Set_State(){
 }
 
 void ST_MENU_Change_Setting_State(uint8_t p_is_increase){
-	if(ST_MENU_Data.state == CHECKING_ALARM_AGAIN){
+	int8_t *t_value = (int8_t *)(&ST_MENU_Data.state);
+	*t_value += ((p_is_increase == INCREASE) ? 1 : -1);
+	if(ST_MENU_Data.state > CHECKING_ALARM_AGAIN){
+		*t_value = CHECKING_ALARM_AGAIN;
 		TIMELINE_Add(&ST_MENU_Data.timeline_data);
+		TL_MENU_Set_State();
 	} else{
-		int8_t *t_value = (int8_t *)(&ST_MENU_Data.state);
-		*t_value += ((p_is_increase == INCREASE) ? 1 : -1);
 		if(*t_value < 0){
 			*t_value = 0;
 			TL_MENU_Set_State();
+			return;
 		}
+		ST_MENU_Data.current_day_state = 0;
 		MENU_Data.menu_type = SETTING_TIMELINE_MENU;
 		MENU_Data.changed = 0;
 	}
 }
 
 void ST_MENU_Set_Value(uint8_t p_is_increase){
+	MENU_Data.menu_type = SETTING_TIMELINE_MENU;
+	MENU_Data.changed = 0;
 	if(ST_MENU_Data.state < CHECKING_ALARM_AGAIN){
 		int8_t *t_data_ptr;
 		if(ST_MENU_Data.state >= SETTING_ALARM_SUNDAY){
@@ -58,8 +64,6 @@ void ST_MENU_Set_Value(uint8_t p_is_increase){
 			}
 		}
 	}
-	MENU_Data.menu_type = SETTING_REALTIME_MENU;
-	MENU_Data.changed = 0;
 }
 
 void ST_MENU_Display(){
@@ -67,18 +71,13 @@ void ST_MENU_Display(){
 		LCD_Clear(MENU_Data.hlcd);
 		MENU_Data.is_changing_menu = 0;
 	}
-	LCD_Set_Cursor(MENU_Data.hlcd, 0, 0);
-	if(SR_MENU_Data.state < CHECKING_AGAIN){
-		LCD_Write(MENU_Data.hlcd, "  Setting : %s   ", __setting_type_str[SR_MENU_Data.state]);
-	} else{
-		LCD_Write(MENU_Data.hlcd, "   Checking again   ");
-	}
-
-	LCD_Write(MENU_Data.hlcd, "Time: %02d:%02d", ST_MENU_Data.timeline_data.hour, ST_MENU_Data.timeline_data.minute);
 
 	LCD_Set_Cursor(MENU_Data.hlcd, 0, 1);
+	LCD_Write(MENU_Data.hlcd, "Time: %02d:%02d", ST_MENU_Data.timeline_data.hour, ST_MENU_Data.timeline_data.minute);
+
+	LCD_Set_Cursor(MENU_Data.hlcd, 0, 2);
 	LCD_Write(MENU_Data.hlcd, "Day: C234567");
-	LCD_Set_Cursor(MENU_Data.hlcd, 5, 2);
+	LCD_Set_Cursor(MENU_Data.hlcd, 5, 3);
 	for(int i = 0; i < 7; i++){
 		uint8_t t_day_value = ST_MENU_Data.timeline_data.day & (1 << i);
 		if(t_day_value){
@@ -86,5 +85,18 @@ void ST_MENU_Display(){
 		} else{
 			LCD_Send_Data(MENU_Data.hlcd, 0xFE);
 		}
+	}
+
+	LCD_Set_Cursor(MENU_Data.hlcd, 0, 0);
+	if(ST_MENU_Data.state < SETTING_ALARM_SUNDAY){
+		LCD_Write(MENU_Data.hlcd, "  Setting : %s   ", __setting_type_str[ST_MENU_Data.state]);
+		LCD_Cursor_No_Blink(MENU_Data.hlcd);
+	} else if(ST_MENU_Data.state < CHECKING_ALARM_AGAIN){
+		LCD_Write(MENU_Data.hlcd, "  Setting : DAY   ");
+		LCD_Cursor_Blink(MENU_Data.hlcd);
+		LCD_Set_Cursor(MENU_Data.hlcd, 5 + ST_MENU_Data.state - SETTING_ALARM_SUNDAY, 2);
+	} else{
+		LCD_Write(MENU_Data.hlcd, "   Checking again   ");
+		LCD_Cursor_No_Blink(MENU_Data.hlcd);
 	}
 }

@@ -23,7 +23,7 @@ void TIMELINE_Init(){
 	TIMELINE_Data.add = FIRST_PAGE_ADD + BYTE_PER_PAGE * 63;
 #endif
 #ifdef __STM32F1xx_HAL_H
-	TIMELINE_Data.add = FIRST_PAGE_ADD + BYTE_PER_PAGE * 63;
+	TIMELINE_Data.add = FIRST_PAGE_ADD + BYTE_PER_PAGE * 63; // 0x0800FC00
 #endif
 #ifdef __STM32F4xx_HAL_H
 	TIMELINE_Data.add = SECTOR_7_ADD;
@@ -33,8 +33,8 @@ void TIMELINE_Init(){
 	for(int i = 0; i < MAX_OPTIONS; i++){
 		uint8_t t_data[DATA_FRAME_SIZE_BYTE];
 		FLASH_Read(TIMELINE_Data.add + i*DATA_FRAME_SIZE_BYTE, t_data, DATA_FRAME_SIZE_BYTE);
-		if(((uint24_t *)t_data)->value == 0xFFFFFF){
-			((uint24_t *)(TIMELINE_Data.flash_data + i))->value = 0xFFFFFF;
+		if(*(uint32_t *)t_data == 0xFFFFFFFF){
+			*(uint32_t *)(TIMELINE_Data.flash_data + i) = 0xFFFFFFFF;
 		} else{
 			TIMELINE_Data.flash_data[i] = *((FLASH_DATA_t *)t_data);
 			TIMELINE_Data.len++;

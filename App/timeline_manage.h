@@ -9,9 +9,9 @@
 #include "stdlib.h"
 #include "string.h"
 
-typedef struct{
-	uint32_t value			:24;
-} __attribute__((packed)) uint24_t;
+//typedef struct{
+//	uint32_t value			:24;
+//} __attribute__((packed)) uint24_t;
 
 enum{
 	TIMELINE_OFF,

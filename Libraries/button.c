@@ -1,27 +1,13 @@
 #include "button.h"
 
+#define TIME_FOR_LONG_PRESSING	2000
+
 //========== btn func ==========//
 
 button_callback_function_t __BUTTON_Pressing_Callback = NULL;
 button_callback_function_t __BUTTON_Releasing_Callback = NULL;
 button_callback_function_t __BUTTON_Short_Pressing_Callback = NULL;
 button_callback_function_t __BUTTON_Long_Pressing_Callback = NULL;
-
-//__weak void BTN_Pressing_Callback(BUTTON_HandleTypedef *ButtonX){
-//	;
-//}
-//
-//__weak void BTN_Releasing_Callback(BUTTON_HandleTypedef *ButtonX){
-//	;
-//}
-//
-//__weak void BTN_Short_Press_Callback(BUTTON_HandleTypedef *ButtonX){
-//	;
-//}
-//
-//__weak void BTN_Long_Press_Callback(BUTTON_HandleTypedef *ButtonX){
-//	;
-//}
 
 void BUTTON_Handle(BUTTON_HandleTypedef *ButtonX){
 	uint8_t state = HAL_GPIO_ReadPin(ButtonX->GPIOx, ButtonX->GPIO_Pin);
@@ -58,7 +44,7 @@ void BUTTON_Handle(BUTTON_HandleTypedef *ButtonX){
 		ButtonX->BTN_Last = ButtonX->BTN_Current;
 	}
 
-	if(ButtonX->is_press && (HAL_GetTick() - ButtonX->time_start_press >= 3000)){
+	if(ButtonX->is_press && (HAL_GetTick() - ButtonX->time_start_press >= TIME_FOR_LONG_PRESSING)){
 		if(__BUTTON_Long_Pressing_Callback != NULL){
 			__BUTTON_Long_Pressing_Callback(ButtonX);
 		}

@@ -1,7 +1,8 @@
-../App/Menu/Timeline_List_Menu.c:6:13:__create_day_string	24	static
-../App/Menu/Timeline_List_Menu.c:19:13:__update_time_list	40	static
-../App/Menu/Timeline_List_Menu.c:29:6:TL_MENU_Init	16	static
-../App/Menu/Timeline_List_Menu.c:39:6:TL_MENU_Set_State	8	static
-../App/Menu/Timeline_List_Menu.c:49:6:TL_MENU_Change_Pointer	16	static
-../App/Menu/Timeline_List_Menu.c:66:6:TL_MENU_Change_Timeline_State	4	static
-../App/Menu/Timeline_List_Menu.c:76:6:TL_MENU_Display	16	static
+../App/Menu/Timeline_List_Menu.c:6:13:__create_day_string	32	static
+../App/Menu/Timeline_List_Menu.c:20:13:__update_time_list	40	static
+../App/Menu/Timeline_List_Menu.c:30:6:TL_MENU_Init	16	static
+../App/Menu/Timeline_List_Menu.c:43:6:TL_MENU_Set_State	8	static
+../App/Menu/Timeline_List_Menu.c:54:6:TL_MENU_Change_Working_State	8	static
+../App/Menu/Timeline_List_Menu.c:73:6:TL_MENU_Change_Pointer	16	static
+../App/Menu/Timeline_List_Menu.c:90:6:TL_MENU_Config_Timeline	16	static
+../App/Menu/Timeline_List_Menu.c:102:6:TL_MENU_Display	16	static

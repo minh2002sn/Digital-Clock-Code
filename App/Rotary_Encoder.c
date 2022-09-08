@@ -20,7 +20,7 @@ void BTN_Short_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 				if(TL_MENU_Data.current_pointer == 0){
 					ST_MENU_Set_State();
 				} else{
-					TL_MENU_Change_Timeline_State();
+					TL_MENU_Change_Working_State();
 				}
 				break;
 			case SETTING_TIMELINE_MENU:
@@ -42,7 +42,11 @@ void BTN_Long_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 				SR_MENU_Change_Setting_State(DECREASE);
 				break;
 			case TIMELINE_LIST_MENU:
-				MAIN_MENU_Display();
+				if(TL_MENU_Data.woking_state == NORMAL_STATE){
+					MAIN_MENU_Set_State();
+				} else{
+					TL_MENU_Change_Working_State();
+				}
 				break;
 			case SETTING_TIMELINE_MENU:
 				ST_MENU_Change_Setting_State(DECREASE);
@@ -63,7 +67,10 @@ void ENCODER_Forward_Callback(ENCODER_HandleTypeDef *p_encoder){
 				SR_MENU_Set_Value(INCREASE);
 				break;
 			case TIMELINE_LIST_MENU:
-				TL_MENU_Change_Pointer(INCREASE);
+				if(TL_MENU_Data.woking_state == NORMAL_STATE)
+					TL_MENU_Change_Pointer(INCREASE);
+				else
+					TL_MENU_Config_Timeline(INCREASE);
 				break;
 			case SETTING_TIMELINE_MENU:
 				ST_MENU_Set_Value(INCREASE);
@@ -84,7 +91,10 @@ void ENCODER_Backward_Callback(ENCODER_HandleTypeDef *p_encoder){
 				SR_MENU_Set_Value(DECREASE);
 				break;
 			case TIMELINE_LIST_MENU:
-				TL_MENU_Change_Pointer(DECREASE);
+				if(TL_MENU_Data.woking_state == NORMAL_STATE)
+					TL_MENU_Change_Pointer(DECREASE);
+				else
+					TL_MENU_Config_Timeline(DECREASE);
 				break;
 			case SETTING_TIMELINE_MENU:
 				ST_MENU_Set_Value(DECREASE);

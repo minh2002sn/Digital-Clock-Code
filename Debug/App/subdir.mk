@@ -5,16 +5,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../App/Alarm.c \
 ../App/Rotary_Encoder.c \
 ../App/Timeline_Manage.c \
 ../App/real_time.c 
 
 OBJS += \
+./App/Alarm.o \
 ./App/Rotary_Encoder.o \
 ./App/Timeline_Manage.o \
 ./App/real_time.o 
 
 C_DEPS += \
+./App/Alarm.d \
 ./App/Rotary_Encoder.d \
 ./App/Timeline_Manage.d \
 ./App/real_time.d 
@@ -27,7 +30,7 @@ App/%.o App/%.su: ../App/%.c App/subdir.mk
 clean: clean-App
 
 clean-App:
-	-$(RM) ./App/Rotary_Encoder.d ./App/Rotary_Encoder.o ./App/Rotary_Encoder.su ./App/Timeline_Manage.d ./App/Timeline_Manage.o ./App/Timeline_Manage.su ./App/real_time.d ./App/real_time.o ./App/real_time.su
+	-$(RM) ./App/Alarm.d ./App/Alarm.o ./App/Alarm.su ./App/Rotary_Encoder.d ./App/Rotary_Encoder.o ./App/Rotary_Encoder.su ./App/Timeline_Manage.d ./App/Timeline_Manage.o ./App/Timeline_Manage.su ./App/real_time.d ./App/real_time.o ./App/real_time.su
 
 .PHONY: clean-App
 

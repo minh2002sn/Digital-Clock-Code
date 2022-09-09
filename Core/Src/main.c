@@ -27,6 +27,7 @@
 #include "Menu.h"
 #include "DHT.h"
 #include "Rotary_Encoder.h"
+#include "Alarm.h"
 
 /* USER CODE END Includes */
 
@@ -131,16 +132,17 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
-  HAL_Delay(500);
-
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_2, 1);
+
+  HAL_Delay(500);
 
   REALTIME_Init();
   DHT_Init(&hdht, &htim4, DHT11, GPIOA, GPIO_PIN_0);
   LCD_Init(&hlcd, &hi2c1, 20, 4, 0x4E);
   MENU_Init(&hlcd);
   ROTARY_ENCODER_Init();
+  ALARM_Init(GPIOC, GPIO_PIN_13);
 
   HAL_TIM_Encoder_Start_IT(&htim2, TIM_CHANNEL_ALL);
 
@@ -161,6 +163,8 @@ int main(void)
 	  MENU_Handle();
 
 	  ROTARY_ENCODER_Handle();
+
+	  ALARM_Handle();
 
   }
   /* USER CODE END 3 */

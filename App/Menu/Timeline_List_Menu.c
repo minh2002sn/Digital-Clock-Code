@@ -1,5 +1,7 @@
 #include "Timeline_List_Menu.h"
 #include "Menu.h"
+#include "Timeline_Manage.h"
+#include "Alarm.h"
 
 TIME_LIST_MENU_DATA_HandleTypeDef TL_MENU_Data;
 
@@ -17,27 +19,17 @@ static void __create_day_string(char str[], uint8_t day){
 	}
 }
 
-static void __update_time_list(){
-	strcpy(TL_MENU_Data.list_str[0], " Add...             ");
-	for(int i = 0; i < TL_MENU_Data.numer_of_choices - 1; i++){
-		char day_str[8] = {};
-		__create_day_string(day_str, TIMELINE_Data.flash_data[i].day);
-		sprintf(TL_MENU_Data.list_str[i + 1], " %02d:%02d %7s  %3s ", TIMELINE_Data.flash_data[i].hour, TIMELINE_Data.flash_data[i].minute,
-				day_str, (TIMELINE_Data.flash_data[i].timeline_state == TIMELINE_ON) ? "ON" : "OFF");
-	}
-}
-
 void TL_MENU_Init(){
 	TL_MENU_Data.first_line = 0;
 	TL_MENU_Data.numer_of_choices = 0;
 	TL_MENU_Data.current_pointer = 0;
 	TL_MENU_Data.woking_state = NORMAL_STATE;
 	TIMELINE_Init();
-	for(int i = 0; i < NUMBER_OF_CHOICE; i++){
-		for(int j = 0; j < 21; j++){
-			TL_MENU_Data.list_str[i][j] = 0;
-		}
-	}
+//	for(int i = 0; i < NUMBER_OF_CHOICE; i++){
+//		for(int j = 0; j < 21; j++){
+//			TL_MENU_Data.list_str[i][j] = 0;
+//		}
+//	}
 }
 
 void TL_MENU_Set_State(){
@@ -48,7 +40,6 @@ void TL_MENU_Set_State(){
 	TL_MENU_Data.current_pointer = 0;
 	TL_MENU_Data.numer_of_choices = TIMELINE_Data.len + 1;
 	TL_MENU_Data.woking_state = NORMAL_STATE;
-	__update_time_list();
 }
 
 void TL_MENU_Change_Working_State(){
@@ -58,13 +49,16 @@ void TL_MENU_Change_Working_State(){
 		TL_MENU_Data.timeline_state = TIMELINE_Data.flash_data[TL_MENU_Data.current_pointer - 1].timeline_state;
 	} else{
 		TL_MENU_Data.woking_state = NORMAL_STATE;
-		if(TL_MENU_Data.timeline_state == DELETE_TIMELINE){
+		if(TL_MENU_Data.timeline_state == DELETE_TIMELINE && !ALARM_Is_Buzzer_Running()){
 			TIMELINE_Delete(TL_MENU_Data.current_pointer - 1);
+			TL_MENU_Data.numer_of_choices--;
+			if(TL_MENU_Data.current_pointer > TL_MENU_Data.numer_of_choices - 1){
+				TL_MENU_Data.current_pointer = TL_MENU_Data.numer_of_choices - 1;
+			}
 		} else{
 			TIMELINE_Data.flash_data[TL_MENU_Data.current_pointer - 1].timeline_state = TL_MENU_Data.timeline_state;
 			TIMELINE_Store_To_Flash();
 		}
-		__update_time_list();
 	}
 	MENU_Data.menu_type = TIMELINE_LIST_MENU;
 	MENU_Data.changed = 0;
@@ -105,9 +99,19 @@ void TL_MENU_Display(){
 		MENU_Data.is_changing_menu = 0;
 	}
 	for(int i = 0; i < 4; i++){
+		uint8_t t_index = TL_MENU_Data.first_line + i;
 		LCD_Set_Cursor(MENU_Data.hlcd, 0, i);
-		LCD_Write(MENU_Data.hlcd, TL_MENU_Data.list_str[TL_MENU_Data.first_line + i]);
-		if(TL_MENU_Data.current_pointer == TL_MENU_Data.first_line + i){
+		if(t_index == 0){
+			LCD_Write(MENU_Data.hlcd, " Add...             ");
+		} else if(t_index - 1 < TIMELINE_Data.len){
+			char day_str[8] = {};
+			__create_day_string(day_str, TIMELINE_Data.flash_data[t_index - 1].day);
+			LCD_Write(MENU_Data.hlcd, " %02d:%02d %7s  %s ", TIMELINE_Data.flash_data[t_index - 1].hour, TIMELINE_Data.flash_data[t_index - 1].minute,
+					day_str, (TIMELINE_Data.flash_data[t_index - 1].timeline_state == TIMELINE_ON) ? " ON" : "OFF");
+		} else{
+			LCD_Write(MENU_Data.hlcd, "                    ");
+		}
+		if(TL_MENU_Data.current_pointer == t_index){
 			if(TL_MENU_Data.woking_state == NORMAL_STATE){
 				LCD_Set_Cursor(MENU_Data.hlcd, 0, i);
 				LCD_Send_Data(MENU_Data.hlcd, 0x7E);

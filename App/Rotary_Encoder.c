@@ -2,6 +2,7 @@
 #include "button.h"
 #include "Encoder.h"
 #include "Menu.h"
+#include "Alarm.h"
 
 BUTTON_HandleTypedef h_encoder_button;
 ENCODER_HandleTypeDef h_encoder;
@@ -9,6 +10,10 @@ extern TIM_HandleTypeDef htim2;
 
 void BTN_Short_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 	if(p_ButtonX == &h_encoder_button){
+		if(ALARM_Is_Buzzer_Running()){
+			ALARM_Stop_Buzzer();
+			return;
+		}
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
 				TL_MENU_Set_State();
@@ -34,6 +39,10 @@ void BTN_Short_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 
 void BTN_Long_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 	if(p_ButtonX == &h_encoder_button){
+		if(ALARM_Is_Buzzer_Running()){
+			ALARM_Stop_Buzzer();
+			return;
+		}
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
 				SR_MENU_Set_State();

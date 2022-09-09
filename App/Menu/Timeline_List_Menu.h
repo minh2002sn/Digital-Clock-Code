@@ -19,7 +19,7 @@ enum{
 
 typedef struct{
 	uint8_t first_line;
-	char list_str[NUMBER_OF_CHOICE][21];
+//	char list_str[NUMBER_OF_CHOICE][21];
 	uint8_t numer_of_choices;
 	int8_t current_pointer;
 	uint8_t woking_state;

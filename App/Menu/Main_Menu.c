@@ -1,4 +1,3 @@
-#include "Main_Menu.h"
 #include "Menu.h"
 #include "real_time.h"
 #include "DHT.h"
@@ -119,10 +118,17 @@ void MAIN_MENU_Display(){
 
 	MAIN_MENU_Display_Num(REALTIME_Data.system_hour / 10, 2, 2);
 	MAIN_MENU_Display_Num(REALTIME_Data.system_hour % 10, 6, 2);
-	LCD_Set_Cursor(MENU_Data.hlcd, 9, 2);
-	LCD_Send_Data(MENU_Data.hlcd, '.');
-	LCD_Set_Cursor(MENU_Data.hlcd, 9, 3);
-	LCD_Send_Data(MENU_Data.hlcd, '.');
+	if(MENU_Data.blink_state){
+		LCD_Set_Cursor(MENU_Data.hlcd, 9, 2);
+		LCD_Send_Data(MENU_Data.hlcd, '.');
+		LCD_Set_Cursor(MENU_Data.hlcd, 9, 3);
+		LCD_Send_Data(MENU_Data.hlcd, '.');
+	} else{
+		LCD_Set_Cursor(MENU_Data.hlcd, 9, 2);
+		LCD_Send_Data(MENU_Data.hlcd, ' ');
+		LCD_Set_Cursor(MENU_Data.hlcd, 9, 3);
+		LCD_Send_Data(MENU_Data.hlcd, ' ');
+	}
 	MAIN_MENU_Display_Num(REALTIME_Data.system_minute / 10, 10, 2);
 	MAIN_MENU_Display_Num(REALTIME_Data.system_minute % 10, 14, 2);
 }

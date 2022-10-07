@@ -24,7 +24,7 @@ void ST_MENU_Set_State(){
 void ST_MENU_Change_Setting_State(uint8_t p_is_increase){
 	int8_t *t_value = (int8_t *)(&ST_MENU_Data.state);
 	*t_value += ((p_is_increase == INCREASE) ? 1 : -1);
-	if(ST_MENU_Data.state > CHECKING_ALARM_AGAIN){
+	if(*t_value > CHECKING_ALARM_AGAIN){
 		*t_value = CHECKING_ALARM_AGAIN;
 		TIMELINE_Add(&ST_MENU_Data.timeline_data);
 		TL_MENU_Set_State();

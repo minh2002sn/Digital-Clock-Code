@@ -115,7 +115,7 @@ void ENCODER_Backward_Callback(ENCODER_HandleTypeDef *p_encoder){
 }
 
 void ROTARY_ENCODER_Init(){
-	BUTTON_Init(&h_encoder_button, GPIOA, GPIO_PIN_1);
+	BUTTON_Init(&h_encoder_button, GPIOB, GPIO_PIN_4);
 	BUTTON_Set_Callback_Function(NULL, NULL, BTN_Short_Pressing_Callback, BTN_Long_Pressing_Callback);
 	ENCODER_Init(&h_encoder, &htim2);
 	ENCODER_Set_Callback_Function(ENCODER_Forward_Callback, ENCODER_Backward_Callback);

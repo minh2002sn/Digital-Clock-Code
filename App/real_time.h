@@ -1,7 +1,9 @@
 #ifndef REAL_TIME_H
 #define REAL_TIME_H
 
-#include "stdint.h"
+//#define USING_EXTERNAL_RTC
+
+#include <stdint.h>
 #include "DS3231.h"
 
 typedef struct{

@@ -1,14 +1,16 @@
 #include "Menu.h"
 
-#include "Main_Menu.h"
-
 MENU_DATA_t MENU_Data;
+
+#define BLINKING_CYCLE		1000
 
 void MENU_Init(LCD_I2C_HandleTypeDef *p_hlcd){
 	MENU_Data.hlcd = p_hlcd;
 	MENU_Data.changed = 0;
 	MENU_Data.is_changing_menu = 1;
 	MENU_Data.menu_type = MAIN_MENU;
+	MENU_Data.blinking_timer = 0;
+	MENU_Data.blink_state = 1;
 	MAIN_MENU_Init();
 	SR_MENU_Init();
 	TL_MENU_Init();
@@ -48,4 +50,13 @@ void MENU_Handle(){
 		}
 		MENU_Data.changed = 1;
 	}
+
+	if(HAL_GetTick() - MENU_Data.blinking_timer > BLINKING_CYCLE){
+		if(MENU_Data.menu_type == MAIN_MENU){
+			MENU_Data.changed = 0;
+			MENU_Data.blink_state = !MENU_Data.blink_state;
+		}
+		MENU_Data.blinking_timer = HAL_GetTick();
+	}
+
 }

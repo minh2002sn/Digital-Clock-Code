@@ -9,11 +9,11 @@
 ALARM_DATA_t ALARM_Data;
 
 static void __buzzer_on(){
-	HAL_GPIO_WritePin(ALARM_Data.buzzer_port, ALARM_Data.buzzer_pin, 0);
+	HAL_GPIO_WritePin(ALARM_Data.buzzer_port, ALARM_Data.buzzer_pin, 1);
 }
 
 static void __buzzer_off(){
-	HAL_GPIO_WritePin(ALARM_Data.buzzer_port, ALARM_Data.buzzer_pin, 1);
+	HAL_GPIO_WritePin(ALARM_Data.buzzer_port, ALARM_Data.buzzer_pin, 0);
 }
 
 static void __finding_next_timeline(){

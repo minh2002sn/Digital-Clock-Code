@@ -138,8 +138,6 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
 
-//  while(HAL_I2C_IsDeviceReady(&hi2c2, 0x68 << 1, 1, 1000) != HAL_OK);
-
   HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, 0);
 

@@ -22,7 +22,7 @@ typedef struct{
 	float huminity;
 } DHT_HandleTypeDef;
 
-void DHT_Init(DHT_HandleTypeDef* p_DHT, TIM_HandleTypeDef* p_htim, uint8_t p_sensor_type, GPIO_TypeDef* p_Port, uint16_t p_Pin);
+void DHT_Init(DHT_HandleTypeDef* p_DHT, uint8_t p_sensor_type, GPIO_TypeDef* p_Port, uint16_t p_Pin);
 uint8_t DHT_Read_Value(DHT_HandleTypeDef* p_DHT);
 
 #endif

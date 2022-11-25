@@ -1,3 +1,3 @@
 ../Libraries/DHT.c:17:13:DHT_Set_Pin_Input	24	static
-../Libraries/DHT.c:83:6:DHT_Init	16	static
-../Libraries/DHT.c:92:9:DHT_Read_Value	56	static
+../Libraries/DHT.c:83:6:DHT_Init	0	static
+../Libraries/DHT.c:91:9:DHT_Read_Value	56	static

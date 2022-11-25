@@ -80,8 +80,7 @@ static uint8_t DHT_Read(DHT_HandleTypeDef* p_DHT, uint8_t p_data[5]){
 	return DHT_OK;
 }
 
-void DHT_Init(DHT_HandleTypeDef* p_DHT, TIM_HandleTypeDef* p_htim, uint8_t p_sensor_type, GPIO_TypeDef* p_Port, uint16_t p_Pin){
-	DELAY_US_Init(p_htim);
+void DHT_Init(DHT_HandleTypeDef* p_DHT, uint8_t p_sensor_type, GPIO_TypeDef* p_Port, uint16_t p_Pin){
 	p_DHT->sensor_type = p_sensor_type;
 	p_DHT->DHT_Port = p_Port;
 	p_DHT->DHT_Pin = p_Pin;

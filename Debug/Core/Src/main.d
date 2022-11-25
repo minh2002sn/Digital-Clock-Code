@@ -18,6 +18,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
@@ -26,7 +28,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/LCD_I2C.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/real_time.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DS3231.h \
@@ -39,7 +40,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Timeline_Menu.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DHT.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Rotary_Encoder.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Alarm.h
+ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Alarm.h \
+ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/Delay_us.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -60,6 +62,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
@@ -68,7 +72,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
-../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/LCD_I2C.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/real_time.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DS3231.h:
@@ -82,3 +85,4 @@ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Di
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DHT.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Rotary_Encoder.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Alarm.h:
+D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/Delay_us.h:

@@ -1,6 +1,8 @@
 #ifndef LCD_I2C_H
 #define LCD_I2C_H
 
+#define LCD_4BIT_CONTROL
+
 #include "main.h"
 
 #include "stdarg.h"
@@ -46,13 +48,17 @@
 #define LCD_5x10DOTS 					0x04
 #define LCD_5x8DOTS 					0x00
 
-// flags for backlight control
 #define LCD_BACKLIGHT 					0x08
 #define LCD_NOBACKLIGHT 				0x00
 
 #define En 								0b00000100  // Enable bit
 #define Rw 								0b00000010  // Read/Write bit
 #define Rs 								0b00000001  // Register select bit
+
+#ifdef LCD_4BIT_CONTROL
+#define SENDING_DATA_MASK				0x0005
+#define SENDING_CMD_MASK				0x0004
+#endif
 
 typedef struct{
 	uint8_t LCD_Columns;

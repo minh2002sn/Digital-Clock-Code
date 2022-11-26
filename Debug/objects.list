@@ -1,4 +1,5 @@
 "./App/Alarm.o"
+"./App/Battery_Value.o"
 "./App/Rotary_Encoder.o"
 "./App/Timeline_Manage.o"
 "./App/real_time.o"

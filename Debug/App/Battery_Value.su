@@ -1,0 +1,3 @@
+../App/Battery_Value.c:7:6:HAL_ADC_ConvCpltCallback	8	static
+../App/Battery_Value.c:15:6:BATTERY_LEVEL_Init	0	static
+../App/Battery_Value.c:22:6:BATTERY_LEVEL_Handle	8	static

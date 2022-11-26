@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "real_time.h"
 #include "DHT.h"
+#include "Battery_Value.h"
 
 extern DHT_HandleTypeDef hdht;
 
@@ -154,6 +155,8 @@ void MAIN_MENU_Display(){
 	LCD_Write(MENU_Data.hlcd, "%02dC  ", (uint8_t)hdht.temperature);
 	LCD_Send_Data(MENU_Data.hlcd, 4);
 	LCD_Write(MENU_Data.hlcd, "%02d%%  ", (uint8_t)hdht.huminity);
+	LCD_Send_Data(MENU_Data.hlcd, BATTERY_LEVEL_Data.battery_level / 30 + 4);
+	LCD_Write(MENU_Data.hlcd, "%02d%%  ", BATTERY_LEVEL_Data.battery_level);
 
 
 	if(MAIN_MENU_Data.time_format == FORMAT_24_HOURS){

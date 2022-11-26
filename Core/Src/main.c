@@ -29,6 +29,7 @@
 #include "Rotary_Encoder.h"
 #include "Alarm.h"
 #include "Delay_us.h"
+#include "Battery_Value.h"
 
 /* USER CODE END Includes */
 
@@ -148,6 +149,7 @@ int main(void)
   MENU_Init(&hlcd);
   ROTARY_ENCODER_Init();
   ALARM_Init(GPIOA, GPIO_PIN_1);
+  BATTERY_LEVEL_Init();
 
   HAL_TIM_Encoder_Start_IT(&htim2, TIM_CHANNEL_ALL);
 
@@ -170,6 +172,8 @@ int main(void)
 	  ROTARY_ENCODER_Handle();
 
 	  ALARM_Handle();
+
+	  BATTERY_LEVEL_Handle();
 
   }
   /* USER CODE END 3 */

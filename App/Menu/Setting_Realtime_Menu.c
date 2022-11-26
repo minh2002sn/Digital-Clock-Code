@@ -34,12 +34,12 @@ void SR_MENU_Set_State(){
 void SR_MENU_Change_Setting_State(uint8_t p_is_increase){
 	if(SR_MENU_Data.state == CHECKING_AGAIN){
 		REALTIME_Set_New_Realtime(&SR_MENU_Data.new_realtime);
-		MAIN_MENU_Set_State();
+		SETTING_MENU_Set_State();
 	} else{
 		SR_MENU_Data.state += ((p_is_increase == INCREASE) ? 1 : -1);
 		if((int8_t)SR_MENU_Data.state < 0){
 			SR_MENU_Data.state = 0;
-			MAIN_MENU_Set_State();
+			SETTING_MENU_Set_State();
 			return;
 		}
 		MENU_Data.menu_type = SETTING_REALTIME_MENU;

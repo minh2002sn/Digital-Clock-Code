@@ -3,7 +3,7 @@
 #include "Timeline_Manage.h"
 #include "Alarm.h"
 
-TIME_LIST_MENU_DATA_HandleTypeDef TL_MENU_Data;
+TIME_LIST_MENU_DATA_t TL_MENU_Data;
 
 static void __create_day_string(char str[], uint8_t day){
 	uint8_t t_num_of_day = 0;

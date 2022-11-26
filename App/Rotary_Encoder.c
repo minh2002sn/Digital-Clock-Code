@@ -14,9 +14,21 @@ void BTN_Short_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 			ALARM_Stop_Buzzer();
 			return;
 		}
+	}
+
+	if(p_ButtonX == &h_encoder_button){
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
-				TL_MENU_Set_State();
+				SETTING_MENU_Set_State();
+				break;
+			case SETTING_MENU:
+				if(SETTING_MENU_Data.current_pointer == 0){
+					SETTING_MENU_Change_Working_State();
+				} else if(SETTING_MENU_Data.current_pointer == 1){
+					TL_MENU_Set_State();
+				} else if(SETTING_MENU_Data.current_pointer == 2){
+					SR_MENU_Set_State();
+				}
 				break;
 			case SETTING_REALTIME_MENU:
 				SR_MENU_Change_Setting_State(INCREASE);
@@ -43,16 +55,26 @@ void BTN_Long_Pressing_Callback(BUTTON_HandleTypedef *p_ButtonX){
 			ALARM_Stop_Buzzer();
 			return;
 		}
+	}
+
+	if(p_ButtonX == &h_encoder_button){
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
-				SR_MENU_Set_State();
+
+				break;
+			case SETTING_MENU:
+				if(SETTING_MENU_Data.is_setting_time_format == 1){
+					SETTING_MENU_Change_Working_State();
+				} else{
+					MAIN_MENU_Set_State();
+				}
 				break;
 			case SETTING_REALTIME_MENU:
 				SR_MENU_Change_Setting_State(DECREASE);
 				break;
 			case TIMELINE_LIST_MENU:
 				if(TL_MENU_Data.woking_state == NORMAL_STATE){
-					MAIN_MENU_Set_State();
+					SETTING_MENU_Set_State();
 				} else{
 					TL_MENU_Change_Working_State();
 				}
@@ -71,6 +93,13 @@ void ENCODER_Forward_Callback(ENCODER_HandleTypeDef *p_encoder){
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
 
+				break;
+			case SETTING_MENU:
+				if(SETTING_MENU_Data.is_setting_time_format == 1){
+					SETTING_MENU_Config_Time_Format();
+				} else{
+					SETTING_MENU_Change_Pointer(INCREASE);
+				}
 				break;
 			case SETTING_REALTIME_MENU:
 				SR_MENU_Set_Value(INCREASE);
@@ -95,6 +124,13 @@ void ENCODER_Backward_Callback(ENCODER_HandleTypeDef *p_encoder){
 		switch(MENU_Data.menu_type){
 			case MAIN_MENU:
 
+				break;
+			case SETTING_MENU:
+				if(SETTING_MENU_Data.is_setting_time_format == 1){
+					SETTING_MENU_Config_Time_Format();
+				} else{
+					SETTING_MENU_Change_Pointer(DECREASE);
+				}
 				break;
 			case SETTING_REALTIME_MENU:
 				SR_MENU_Set_Value(DECREASE);

@@ -36,6 +36,9 @@ void MENU_Handle(){
 			case MAIN_MENU:
 				MAIN_MENU_Display();
 				break;
+			case SETTING_MENU:
+				SETTING_MENU_Display();
+				break;
 			case SETTING_REALTIME_MENU:
 				SR_MENU_Display();
 				break;

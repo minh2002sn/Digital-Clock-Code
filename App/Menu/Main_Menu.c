@@ -4,6 +4,8 @@
 
 extern DHT_HandleTypeDef hdht;
 
+MAIN_MENU_t MAIN_MENU_Data;
+
 char DAY_Str[7][4] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
 
 static uint8_t number_char[11][6] = {
@@ -81,6 +83,43 @@ void MAIN_MENU_Init(){
 	};
 	LCD_Create_Char(MENU_Data.hlcd, 4, igrasia);
 
+	uint8_t full_battery[8] = {
+			0b01110,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
+	};
+	LCD_Create_Char(MENU_Data.hlcd, 5, full_battery);
+
+	uint8_t half_battery[8] = {
+			0b01110,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
+	};
+	LCD_Create_Char(MENU_Data.hlcd, 6, half_battery);
+
+	uint8_t low_battery[8] = {
+			0b01110,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b11111,
+	};
+	LCD_Create_Char(MENU_Data.hlcd, 7, low_battery);
+
+	MAIN_MENU_Data.time_format = FORMAT_24_HOURS;
 }
 
 void MAIN_MENU_Display_Num(uint8_t p_number, uint8_t p_col, uint8_t p_row){
@@ -110,14 +149,23 @@ void MAIN_MENU_Display(){
 	}
 	LCD_Write(MENU_Data.hlcd, "%s %02d-%02d-20%02d", t_day_string,
 				REALTIME_Data.system_date, REALTIME_Data.system_month, REALTIME_Data.system_year);
-	LCD_Set_Cursor(MENU_Data.hlcd, 3, 1);
+	LCD_Set_Cursor(MENU_Data.hlcd, 2, 1);
 	LCD_Send_Data(MENU_Data.hlcd, 3);
-	LCD_Write(MENU_Data.hlcd, "%02dC      ", (uint8_t)hdht.temperature);
+	LCD_Write(MENU_Data.hlcd, "%02dC  ", (uint8_t)hdht.temperature);
 	LCD_Send_Data(MENU_Data.hlcd, 4);
-	LCD_Write(MENU_Data.hlcd, "%02d%%", (uint8_t)hdht.huminity);
+	LCD_Write(MENU_Data.hlcd, "%02d%%  ", (uint8_t)hdht.huminity);
 
-	MAIN_MENU_Display_Num(REALTIME_Data.system_hour / 10, 2, 2);
-	MAIN_MENU_Display_Num(REALTIME_Data.system_hour % 10, 6, 2);
+
+	if(MAIN_MENU_Data.time_format == FORMAT_24_HOURS){
+		MAIN_MENU_Display_Num(REALTIME_Data.system_hour / 10, 2, 2);
+		MAIN_MENU_Display_Num(REALTIME_Data.system_hour % 10, 6, 2);
+	} else{
+		MAIN_MENU_Display_Num((REALTIME_Data.system_hour - 12) / 10, 2, 2);
+		MAIN_MENU_Display_Num((REALTIME_Data.system_hour - 12) % 10, 6, 2);
+		LCD_Set_Cursor(MENU_Data.hlcd, 18, 3);
+		LCD_Write(MENU_Data.hlcd, "%s", (REALTIME_Data.system_hour > 12) ? "PM" : "AM");
+	}
+
 	if(MENU_Data.blink_state){
 		LCD_Set_Cursor(MENU_Data.hlcd, 9, 2);
 		LCD_Send_Data(MENU_Data.hlcd, '.');
@@ -129,6 +177,7 @@ void MAIN_MENU_Display(){
 		LCD_Set_Cursor(MENU_Data.hlcd, 9, 3);
 		LCD_Send_Data(MENU_Data.hlcd, ' ');
 	}
+
 	MAIN_MENU_Display_Num(REALTIME_Data.system_minute / 10, 10, 2);
 	MAIN_MENU_Display_Num(REALTIME_Data.system_minute % 10, 14, 2);
 }

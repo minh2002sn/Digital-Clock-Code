@@ -1,0 +1,6 @@
+../App/Menu/Setting_Menu.c:5:6:SETTING_MENU_Init	0	static
+../App/Menu/Setting_Menu.c:10:6:SETTING_MENU_Set_State	0	static
+../App/Menu/Setting_Menu.c:18:6:SETTING_MENU_Config_Time_Format	0	static
+../App/Menu/Setting_Menu.c:28:6:SETTING_MENU_Change_Pointer	0	static
+../App/Menu/Setting_Menu.c:40:6:SETTING_MENU_Change_Working_State	0	static
+../App/Menu/Setting_Menu.c:48:6:SETTING_MENU_Display	16	static

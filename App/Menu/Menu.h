@@ -8,9 +8,11 @@
 #include "Setting_Realtime_Menu.h"
 #include "Timeline_List_Menu.h"
 #include "Setting_Timeline_Menu.h"
+#include "Setting_Menu.h"
 
 typedef enum{
 	MAIN_MENU,
+	SETTING_MENU,
 	SETTING_REALTIME_MENU,
 	TIMELINE_LIST_MENU,
 	SETTING_TIMELINE_MENU,

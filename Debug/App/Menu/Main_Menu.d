@@ -35,7 +35,7 @@ App/Menu/Main_Menu.o: ../App/Menu/Main_Menu.c ../App/Menu/Menu.h \
  ../App/Menu/Timeline_List_Menu.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h \
- ../App/Menu/Setting_Timeline_Menu.h \
+ ../App/Menu/Setting_Timeline_Menu.h ../App/Menu/Setting_Menu.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DHT.h
 ../App/Menu/Menu.h:
 ../Core/Inc/main.h:
@@ -77,4 +77,5 @@ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Di
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h:
 ../App/Menu/Setting_Timeline_Menu.h:
+../App/Menu/Setting_Menu.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DHT.h:

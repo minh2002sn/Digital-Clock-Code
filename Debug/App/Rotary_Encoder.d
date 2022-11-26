@@ -40,6 +40,7 @@ App/Rotary_Encoder.o: ../App/Rotary_Encoder.c ../App/Rotary_Encoder.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Timeline_Menu.h \
+ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Menu.h \
  ../App/Alarm.h
 ../App/Rotary_Encoder.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/button.h:
@@ -84,4 +85,5 @@ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Di
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Timeline_Menu.h:
+D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Menu.h:
 ../App/Alarm.h:

@@ -35,7 +35,7 @@ App/Menu/Menu.o: ../App/Menu/Menu.c ../App/Menu/Menu.h ../Core/Inc/main.h \
  ../App/Menu/Timeline_List_Menu.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h \
- ../App/Menu/Setting_Timeline_Menu.h
+ ../App/Menu/Setting_Timeline_Menu.h ../App/Menu/Setting_Menu.h
 ../App/Menu/Menu.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -76,3 +76,4 @@ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Di
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h:
 ../App/Menu/Setting_Timeline_Menu.h:
+../App/Menu/Setting_Menu.h:

@@ -24,7 +24,7 @@ typedef struct{
 	int8_t current_pointer;
 	uint8_t woking_state;
 	uint8_t timeline_state;
-}TIME_LIST_MENU_DATA_HandleTypeDef;
+}TIME_LIST_MENU_DATA_t;
 
 void TL_MENU_Init();
 void TL_MENU_Set_State();
@@ -33,6 +33,6 @@ void TL_MENU_Change_Pointer(uint8_t p_is_increase);
 void TL_MENU_Config_Timeline(uint8_t p_is_increase);
 void TL_MENU_Display();
 
-extern TIME_LIST_MENU_DATA_HandleTypeDef TL_MENU_Data;
+extern TIME_LIST_MENU_DATA_t TL_MENU_Data;
 
 #endif

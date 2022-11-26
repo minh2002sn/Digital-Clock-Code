@@ -1,5 +1,4 @@
-App/real_time.o: ../App/real_time.c ../App/real_time.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DS3231.h \
+App/Menu/Setting_Menu.o: ../App/Menu/Setting_Menu.c ../App/Menu/Menu.h \
  ../Core/Inc/main.h ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -29,18 +28,15 @@ App/real_time.o: ../App/real_time.c ../App/real_time.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/menu.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/LCD_I2C.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Main_Menu.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Realtime_Menu.h \
+ ../App/Menu/Main_Menu.h ../App/Menu/Setting_Realtime_Menu.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/real_time.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Timeline_List_Menu.h \
+ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DS3231.h \
+ ../App/Menu/Timeline_List_Menu.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h \
  D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Timeline_Menu.h \
- D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Menu.h
-../App/real_time.h:
-D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DS3231.h:
+ ../App/Menu/Setting_Timeline_Menu.h ../App/Menu/Setting_Menu.h
+../App/Menu/Menu.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -71,13 +67,13 @@ D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Di
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
-D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/menu.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/LCD_I2C.h:
-D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Main_Menu.h:
-D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Realtime_Menu.h:
+../App/Menu/Main_Menu.h:
+../App/Menu/Setting_Realtime_Menu.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/real_time.h:
-D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Timeline_List_Menu.h:
+D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/DS3231.h:
+../App/Menu/Timeline_List_Menu.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Timeline_Manage.h:
 D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/Libraries/flash.h:
-D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Timeline_Menu.h:
-D:/A_Minh/A_3rd-year\ university/A_Design\ Embedded\ System/BTL/Code/STM_Code/Digital_Clock_1.0/App/Menu/Setting_Menu.h:
+../App/Menu/Setting_Timeline_Menu.h:
+../App/Menu/Setting_Menu.h:

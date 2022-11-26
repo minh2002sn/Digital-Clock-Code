@@ -4,6 +4,7 @@
 "./App/real_time.o"
 "./App/Menu/Main_Menu.o"
 "./App/Menu/Menu.o"
+"./App/Menu/Setting_Menu.o"
 "./App/Menu/Setting_Realtime_Menu.o"
 "./App/Menu/Setting_Timeline_Menu.o"
 "./App/Menu/Timeline_List_Menu.o"

@@ -7,6 +7,7 @@
 C_SRCS += \
 ../App/Menu/Main_Menu.c \
 ../App/Menu/Menu.c \
+../App/Menu/Setting_Menu.c \
 ../App/Menu/Setting_Realtime_Menu.c \
 ../App/Menu/Setting_Timeline_Menu.c \
 ../App/Menu/Timeline_List_Menu.c 
@@ -14,6 +15,7 @@ C_SRCS += \
 OBJS += \
 ./App/Menu/Main_Menu.o \
 ./App/Menu/Menu.o \
+./App/Menu/Setting_Menu.o \
 ./App/Menu/Setting_Realtime_Menu.o \
 ./App/Menu/Setting_Timeline_Menu.o \
 ./App/Menu/Timeline_List_Menu.o 
@@ -21,6 +23,7 @@ OBJS += \
 C_DEPS += \
 ./App/Menu/Main_Menu.d \
 ./App/Menu/Menu.d \
+./App/Menu/Setting_Menu.d \
 ./App/Menu/Setting_Realtime_Menu.d \
 ./App/Menu/Setting_Timeline_Menu.d \
 ./App/Menu/Timeline_List_Menu.d 
@@ -33,7 +36,7 @@ App/Menu/%.o App/Menu/%.su: ../App/Menu/%.c App/Menu/subdir.mk
 clean: clean-App-2f-Menu
 
 clean-App-2f-Menu:
-	-$(RM) ./App/Menu/Main_Menu.d ./App/Menu/Main_Menu.o ./App/Menu/Main_Menu.su ./App/Menu/Menu.d ./App/Menu/Menu.o ./App/Menu/Menu.su ./App/Menu/Setting_Realtime_Menu.d ./App/Menu/Setting_Realtime_Menu.o ./App/Menu/Setting_Realtime_Menu.su ./App/Menu/Setting_Timeline_Menu.d ./App/Menu/Setting_Timeline_Menu.o ./App/Menu/Setting_Timeline_Menu.su ./App/Menu/Timeline_List_Menu.d ./App/Menu/Timeline_List_Menu.o ./App/Menu/Timeline_List_Menu.su
+	-$(RM) ./App/Menu/Main_Menu.d ./App/Menu/Main_Menu.o ./App/Menu/Main_Menu.su ./App/Menu/Menu.d ./App/Menu/Menu.o ./App/Menu/Menu.su ./App/Menu/Setting_Menu.d ./App/Menu/Setting_Menu.o ./App/Menu/Setting_Menu.su ./App/Menu/Setting_Realtime_Menu.d ./App/Menu/Setting_Realtime_Menu.o ./App/Menu/Setting_Realtime_Menu.su ./App/Menu/Setting_Timeline_Menu.d ./App/Menu/Setting_Timeline_Menu.o ./App/Menu/Setting_Timeline_Menu.su ./App/Menu/Timeline_List_Menu.d ./App/Menu/Timeline_List_Menu.o ./App/Menu/Timeline_List_Menu.su
 
 .PHONY: clean-App-2f-Menu
 

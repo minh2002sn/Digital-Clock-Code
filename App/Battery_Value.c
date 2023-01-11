@@ -7,8 +7,10 @@ BATTERY_LEVEL_DATA_t BATTERY_LEVEL_Data;
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
 	if(hadc->Instance == hadc1.Instance){
 		BATTERY_LEVEL_Data.ADC_Value = HAL_ADC_GetValue(&hadc1);
-		BATTERY_LEVEL_Data.batterry_voltage = BATTERY_LEVEL_Data.ADC_Value * 3.3 / 4096.0 * 3.2;
-		BATTERY_LEVEL_Data.battery_level = (8.4 - BATTERY_LEVEL_Data.batterry_voltage) / 1.0 * 100;
+		BATTERY_LEVEL_Data.batterry_voltage = BATTERY_LEVEL_Data.ADC_Value * 3.3 / 4096.0 * 3.5;
+		BATTERY_LEVEL_Data.battery_level = (BATTERY_LEVEL_Data.batterry_voltage - 7.2) * 100.0 / 1.2;
+		if(BATTERY_LEVEL_Data.battery_level > 100)
+			BATTERY_LEVEL_Data.battery_level = 100;
 	}
 }
 

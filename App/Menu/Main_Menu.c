@@ -84,17 +84,17 @@ void MAIN_MENU_Init(){
 	};
 	LCD_Create_Char(MENU_Data.hlcd, 4, igrasia);
 
-	uint8_t full_battery[8] = {
+	uint8_t low_battery[8] = {
 			0b01110,
-			0b11111,
-			0b11111,
-			0b11111,
-			0b11111,
-			0b11111,
-			0b11111,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b10001,
+			0b10001,
 			0b11111,
 	};
-	LCD_Create_Char(MENU_Data.hlcd, 5, full_battery);
+	LCD_Create_Char(MENU_Data.hlcd, 5, low_battery);
 
 	uint8_t half_battery[8] = {
 			0b01110,
@@ -108,17 +108,17 @@ void MAIN_MENU_Init(){
 	};
 	LCD_Create_Char(MENU_Data.hlcd, 6, half_battery);
 
-	uint8_t low_battery[8] = {
+	uint8_t full_battery[8] = {
 			0b01110,
-			0b10001,
-			0b10001,
-			0b10001,
-			0b10001,
-			0b10001,
-			0b10001,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
+			0b11111,
 			0b11111,
 	};
-	LCD_Create_Char(MENU_Data.hlcd, 7, low_battery);
+	LCD_Create_Char(MENU_Data.hlcd, 7, full_battery);
 
 	MAIN_MENU_Data.time_format = FORMAT_24_HOURS;
 }
@@ -155,7 +155,13 @@ void MAIN_MENU_Display(){
 	LCD_Write(MENU_Data.hlcd, "%02dC  ", (uint8_t)hdht.temperature);
 	LCD_Send_Data(MENU_Data.hlcd, 4);
 	LCD_Write(MENU_Data.hlcd, "%02d%%  ", (uint8_t)hdht.huminity);
-	LCD_Send_Data(MENU_Data.hlcd, BATTERY_LEVEL_Data.battery_level / 30 + 4);
+	if(BATTERY_LEVEL_Data.battery_level > 70)
+		LCD_Send_Data(MENU_Data.hlcd, 7);
+	else if(BATTERY_LEVEL_Data.battery_level > 40)
+		LCD_Send_Data(MENU_Data.hlcd, 6);
+	else
+		LCD_Send_Data(MENU_Data.hlcd, 5);
+
 	LCD_Write(MENU_Data.hlcd, "%02d%%  ", BATTERY_LEVEL_Data.battery_level);
 
 

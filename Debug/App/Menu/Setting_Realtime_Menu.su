@@ -1,5 +1,5 @@
-../App/Menu/Setting_Realtime_Menu.c:19:6:SR_MENU_Init	0	static
-../App/Menu/Setting_Realtime_Menu.c:25:6:SR_MENU_Set_State	0	static
-../App/Menu/Setting_Realtime_Menu.c:34:6:SR_MENU_Change_Setting_State	8	static
-../App/Menu/Setting_Realtime_Menu.c:50:6:SR_MENU_Set_Value	12	static
+../App/Menu/Setting_Realtime_Menu.c:19:6:SR_MENU_Init	16	static
+../App/Menu/Setting_Realtime_Menu.c:25:6:SR_MENU_Set_State	16	static
+../App/Menu/Setting_Realtime_Menu.c:34:6:SR_MENU_Change_Setting_State	16	static
+../App/Menu/Setting_Realtime_Menu.c:50:6:SR_MENU_Set_Value	32	static
 ../App/Menu/Setting_Realtime_Menu.c:78:6:SR_MENU_Display	32	static

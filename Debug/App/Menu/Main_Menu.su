@@ -1,5 +1,5 @@
-../App/Menu/Main_Menu.c:26:6:MAIN_MENU_Init	80	static
+../App/Menu/Main_Menu.c:26:6:MAIN_MENU_Init	72	static
 ../App/Menu/Main_Menu.c:126:6:MAIN_MENU_Display_Num	32	static
 ../App/Menu/Main_Menu.c:141:6:MAIN_MENU_Display	32	static
-../App/Menu/Main_Menu.c:188:6:MAIN_MENU_Set_State	0	static
-../App/Menu/Main_Menu.c:194:6:MAIN_MENU_Update_Value	0	static
+../App/Menu/Main_Menu.c:194:6:MAIN_MENU_Set_State	4	static
+../App/Menu/Main_Menu.c:200:6:MAIN_MENU_Update_Value	4	static

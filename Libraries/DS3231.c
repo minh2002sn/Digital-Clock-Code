@@ -16,6 +16,8 @@ static uint8_t DEC_To_BCD(uint8_t p_DEC_value){
 
 void DS3231_Init(DS3231_HandleTypeDef *p_ds3231, I2C_HandleTypeDef *p_hi2c){
 	p_ds3231->hi2c = p_hi2c;
+
+	HAL_StatusTypeDef status = HAL_I2C_IsDeviceReady(p_hi2c, DS3231_ADDRESS, 1, 1000);
 }
 
 void DS3231_Set_Time(DS3231_HandleTypeDef *p_ds3231, uint8_t p_hour, uint8_t p_minute, uint8_t p_second, uint8_t p_day){

@@ -1,6 +1,10 @@
-../App/Alarm.c:15:13:__buzzer_off	0	static
-../App/Alarm.c:75:6:ALARM_Init	0	static
-../App/Alarm.c:82:6:ALARM_Handle	24	static
-../App/Alarm.c:98:6:ALARM_Stop_Buzzer	0	static
-../App/Alarm.c:104:9:ALARM_Is_Buzzer_Running	0	static
-../App/Alarm.c:108:6:ALARM_Recheck	0	static
+../App/Alarm.c:11:13:__buzzer_on	8	static
+../App/Alarm.c:15:13:__buzzer_off	8	static
+../App/Alarm.c:19:13:__finding_next_timeline	16	static
+../App/Alarm.c:34:13:__waiting_for_timeline	16	static
+../App/Alarm.c:48:13:__alarm_running	8	static
+../App/Alarm.c:75:6:ALARM_Init	16	static
+../App/Alarm.c:82:6:ALARM_Handle	8	static
+../App/Alarm.c:98:6:ALARM_Stop_Buzzer	4	static
+../App/Alarm.c:104:9:ALARM_Is_Buzzer_Running	4	static
+../App/Alarm.c:108:6:ALARM_Recheck	4	static
